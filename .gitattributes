@@ -1,0 +1,12 @@
+# Tell GitHub Linguist to ignore Flutter platform boilerplate
+# so the repo shows as Dart, not C++/CMake
+
+# Linux runner (Flutter platform)
+linux/** linguist-vendored
+
+# Windows runner (Flutter platform)
+windows/** linguist-vendored
+
+# CMake files across all platforms
+*.cmake linguist-vendored
+CMakeLists.txt linguist-vendored
