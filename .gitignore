@@ -61,3 +61,27 @@ ios/Flutter/Flutter.podspec
 *.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
 DerivedData/
+
+# C++ build artifacts
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.out
+*.exe
+*.pch
+*.gch
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CMakeScripts/
+Makefile
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
