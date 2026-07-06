@@ -9,6 +9,9 @@ import 'package:wellness_app/provider/home_view_provider.dart';
 import 'package:wellness_app/widgets/checkin_card.dart';
 import 'package:wellness_app/widgets/guide_card.dart';
 import 'package:wellness_app/widgets/review_card.dart';
+import 'package:wellness_app/widgets/offline_card.dart';
+import 'package:wellness_app/provider/connectivity_provider.dart';
+
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -31,6 +34,8 @@ class HomeView extends ConsumerWidget {
     final greetingAsync = ref.watch(greetingProvider);
     final checkIn = ref.watch(checkInProvider);
     final guidesAsync = ref.watch(guideProvider);
+    final isOffline = ref.watch(isOfflineProvider);
+
 
     final cardModel = switch (checkIn) {
       AsyncData(:final value) =>
@@ -38,8 +43,13 @@ class HomeView extends ConsumerWidget {
       _ => _firstCheckInCard,
     };
 
-    return CustomScrollView(
-      slivers: [
+    return Column(
+      children: [
+        if (isOffline) const OfflineCard(),
+        Expanded(
+          child: CustomScrollView(
+            slivers: [
+
         // ── Scrolling AppBar ────────────────────────────────────────
         SliverAppBar(
           backgroundColor: const Color(0xFFF5F5F5),
@@ -48,6 +58,7 @@ class HomeView extends ConsumerWidget {
           snap: true,
           elevation: 0,
           toolbarHeight: 56,
+          primary: !isOffline,
           centerTitle: false,
           titleSpacing: 16,
           title: Align(
@@ -251,6 +262,9 @@ class HomeView extends ConsumerWidget {
           ),
         ),
       ],
-    );
+    ),
+  ),
+],
+);
   }
 }
