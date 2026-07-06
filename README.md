@@ -106,31 +106,7 @@ lib/
     └── review_card.dart       # Community feedback review card
 ```
 
-### Component Flow
 
-```mermaid
-graph TD
-    subgraph View Layer
-        MS[MainShell] --> HV[HomeView]
-        HV --> OC[OfflineCard]
-        HV --> CC[CheckinCard]
-        HV --> GC[GuideCard]
-        HV --> RC[ReviewCard]
-    end
-
-    subgraph State Management [Riverpod Providers]
-        COP[isOfflineProvider] -->|watch| HV
-        CIP[checkInProvider] -->|watch| HV
-        CIP -->|watch| CC
-        GUP[guideProvider] -->|watch| HV
-        GRP[greetingProvider] -->|watch| HV
-    end
-
-    subgraph Service Layer
-        COP -->|Stream| Connectivity[connectivity_plus]
-        GUP -->|Fetch| Firestore[Cloud Firestore]
-        CIP -->|Save/Read| SP[SharedPreferences]
-    end
 ```
 
 ### Key Modules & Flow Logic
